@@ -1,132 +1,87 @@
-# 🧠 İlaçAsistanı – Yapay Zeka Destekli İlaç Etkileşim ve Semptom Analizi Uygulaması
+# İlaçAsistanı — Drug Interaction & Symptom Analysis (Prototype)
 
-## 🚀 Sprint 1 – Temel Arayüz ve API Mock Entegrasyonu
+A web prototype that lets users check whether two medications interact and whether their symptoms could be side effects of the medications they take. The goal was to support these checks with an AI model (Google Gemini). This repository contains the **front-end prototype** built during Sprint 1.
 
----
+Developed by a five-person team in the **Google Game and App Academy (YZTA) Bootcamp**, 2025.
 
-### 📅 Sprint Bilgileri
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![Status](https://img.shields.io/badge/status-prototype-orange)
 
-- **Sprint Tarihi**: 20 Haziran 2025 – 7 Temmuz 2025  
-- **Sprint Adı**: Temel Arayüz ve Gemini API Mock Entegrasyonu  
-- **Sprint Hedefi**:  
-  Kullanıcının ilaç ve semptom bilgilerini girebildiği, yönlendirici ve kullanıcı dostu bir ön yüzün tasarlanması. Yapay zeka sistemine gönderilecek veri formatının oluşturulması ve Gemini API ile entegrasyon için mock altyapının hazırlanması.
+> ⚠️ **Prototype:** The AI integration was not completed. Interaction and symptom results are **randomly generated mock data**, not real medical analysis. Do not use this app for health decisions. The interface is in Turkish.
 
----
+![Home page](docs/screenshots/home.png)
 
-### 🎯 Vizyon & Strateji
+| Interaction check | Symptom analysis |
+| --- | --- |
+| ![Interaction check](docs/screenshots/interaction.png) | ![Symptom analysis](docs/screenshots/symptom.png) |
 
-Bu proje, ilaç kullanıcılarının potansiyel etkileşim ve yan etkileri önceden fark etmelerini sağlamak amacıyla geliştirilmektedir. Kullanıcının semptomunu ve kullandığı ilaçları analiz eden bir yapay zeka ile sağlık güvenliğini artırmak hedeflenmektedir.
+## Features
 
-- **Stratejik Hedefler**:  
-  - Doğal dil işleme tabanlı geri bildirim sağlayan bir sistem  
-  - Günlük kullanıcıların kolayca erişebileceği sade ve işlevsel bir arayüz  
-  - AI destekli semptom analiziyle olası ilaç kaynaklı riskleri azaltmak  
+- **Home page:** introduction to the two tools, with call-to-action buttons.
+- **Drug interaction check** (`/etkilesim-kontrolu`): enter two medications and get an interaction result with a short explanation and a recommendation.
+- **Symptom analysis** (`/semptom-analizi`): enter your medications and symptoms and get a possible relationship, confidence score, likely causes and recommendations.
+- **Responsive layout:** navigation bar with a mobile menu, built with Tailwind CSS and Lucide icons.
+- **Health disclaimer** on symptom analysis results.
 
----
+## Tech Stack
 
-### 👥 Takım ve Roller
+| Area | Technology |
+| --- | --- |
+| Framework | React 18, TypeScript |
+| Build tool | Vite |
+| Routing | React Router |
+| Styling | Tailwind CSS, Lucide React icons |
+| Linting | ESLint |
 
-| İsim                | Rol                |
-|---------------------|--------------------|
-| Zeynep Sena Koç      | Scrum Master       |
-| Umut Tuna            | FrontEnd Developer |
-| Sadık Can Barut      | Developer          |
-| Şevval Savrunlu      | Developer          |
-| Fatıma Zeyneb Kotan  | Developer          |
+The UI was scaffolded with [Bolt.new](https://bolt.new) and then adapted by the team.
 
-> Tüm takım Scrum metodolojisine uygun şekilde çalışmış, haftalık stand-up'lar, sprint planlama etkinlikleri gerçekleştirmiştir.
+## Project Structure
 
----
+```
+src/
+├── components/
+│   └── Navbar.tsx            # Top navigation with mobile menu
+├── pages/
+│   ├── HomePage.tsx          # Landing page
+│   ├── InteractionCheck.tsx  # Drug–drug interaction check
+│   └── SymptomAnalysis.tsx   # Medication–symptom analysis
+├── services/
+│   └── README.md             # Planned API layer for the LLM integration
+├── App.tsx                   # Routes
+└── main.tsx                  # Entry point
+docs/
+├── SPRINT-1-REPORT.md        # Original sprint report (Turkish)
+└── screenshots/
+```
 
-### 📦 Sprint 1 Backlog (User Story'ler)
+## Getting Started
 
+```bash
+git clone https://github.com/tunaxdev/ilac-asistani.git
+cd ilac-asistani
+npm install
+npm run dev
+```
 
-| ID   | Görev / User Story                                | Öncelik | Tahmini Puan (Story Point) | Durum           | Notlar                                                 |
-|------|---------------------------------------------------|---------|-----------------------------|------------------|--------------------------------------------------------|
-| US01 | Giriş ekranı ve proje tanıtımı arayüzü            | Yüksek  | 3 SP                        | ✅ Tamamlandı    |                                                        |
-| US02 | İlaç girişi alanı ve dinamik form yapısı          | Yüksek  | 5 SP                        | ✅ Tamamlandı    |                                                        |
-| US03 | Semptom girişi alanı ve veri işleme hazırlığı     | Orta    | 3 SP                        | ✅ Tamamlandı    |                                                        |
-| US04 | UI renk paleti, yazı tipi ve tasarım dili rehberi | Orta    | 2 SP                        | ✅ Tamamlandı    |                                                        |
-| US05 | Gemini API mock veri sistemi kurulumu             | Yüksek  | 5 SP                        | 🟡 Devam Ediyor | Mock veri denendi, gerçek API entegrasyonu planlanıyor |
-| US06 | Kullanıcı veri girişinin backend’e gönderilmesi   | Yüksek  | 5 SP                        | 🟠 Planlandı     | Backend geliştirme sonrası                             |
-| US07 | Yapay zeka sonuçlarının frontend’de gösterilmesi  | Yüksek  | 5 SP                        | 🟠 Planlandı     | API entegrasyonu sonrası                               |
-| US08 | Testlerin yazılması ve QA                         | Orta    | 3 SP                        | 🟠 Planlandı     | Sprint 2’ye bırakıldı                                  |
+Then open `http://localhost:5173`. Use `npm run build` for a production build.
 
----
+## Planned Next Steps
 
-## 🔄 Sprint Retrospective
+The [`src/services`](src/services/README.md) folder describes the intended API layer: typed `checkDrugInteraction` and `analyzeSymptoms` functions calling a Gemini-based backend, replacing the current mock results.
 
-- **İyi Gidenler**:
-  - Ekip içi iletişim güçlüydü, tüm görevler zamanında tamamlandı.
-  - Tasarım uyumluluğu ve renk bütünlüğü başarılı oldu.
-- **Geliştirilecekler**:
-  - Backend tarafında gerçek API entegrasyonu eksik kaldı.
-  - UI testleri için otomasyon eklenmesi sonraki sprintte planlanmalı.
- 
----
+## Team
 
-### 🔁 Sprint Review
+| Name | Role |
+| --- | --- |
+| Zeynep Sena Koç | Scrum Master |
+| Umut Tuna | Front-End Developer |
+| Sadık Can Barut | Developer |
+| Şevval Savrunlu | Developer |
+| Fatıma Zeyneb Kotan | Developer |
 
-- ✅ **Tamamlanan Görevler**:
-  - Giriş Sayfası: Açıklayıcı metin ve yönlendirici bir başlıkla sade ve profesyonel tasarım oluşturuldu.
-  - İlaç Giriş Formu: Kullanıcılar, dilediği kadar ilaç ekleyebiliyor; her alan dinamik ve silinebilir yapıdadır.
-  - Semptom Alanı: Serbest metin girişine olanak tanıyan kullanıcı dostu input alanı hazırlandı.
-  - Stil Rehberi: Renk paleti (mavi tonları), yazı tipleri, buton stilleri ve boşluk kuralları netleştirildi.
-  - Mock API: Yapay zekadan dönecek veriler örnek olarak JSON formatında simüle edildi.
-  - Ana Sayfa Tasarımı: Hero bölümü, etkileşim kontrolü ve semptom analizi tanıtım blokları eklendi.
-  - Navigasyon: Navbar ve ilgili sayfalara yönlendirmeler tamamlandı.
-  - Buton Yönlendirmeleri: Ana sayfadaki "Kontrol Et" ve "Analiz Et" butonları ilgili sayfalara düzgün yönlendirildi.
+The team worked in Scrum sprints with daily stand-ups and sprint reviews. See the [Sprint 1 report](docs/SPRINT-1-REPORT.md) for the backlog, retrospective and screenshots of the process.
 
-- 🔍 **Eğitmen Geri Bildirimi**:  
-  - Sprint board'da user story'lere puanlama yapılması gerektiği belirtildi.  
-  - Daily Scrum toplantılarının ekran görüntüleri ve düzenli takibi eksikti.  
-  - Sprint Review ve Retrospective bölümlerinin yazılı olarak belirtilmesi istendi.
-
-- ✅ **Yapılan Güncellemeler**:  
-  - Tüm user story'lere puanlama eklendi.  
-  - Günlük Scrum toplantısına ait ekran görüntüsü eklendi.
-  - Diğer görseller henüz paylaşılmadığı için raporda sadece 1 adet görsel kullanılmıştır.
-  - Review ve Retrospective bölümleri detaylı şekilde rapora eklendi.
-
-- 📌 **Sonuç**:  
-  -Sprint hedefleri büyük ölçüde gerçekleştirildi. Eğitmen geri bildirimi doğrultusunda eksikler tamamlanarak sprint raporu güncellendi ve değerlendirme kriterlerine uygun hale getirildi.
-
-
-### 🖥️ Arayüz Görselleri
-
-![Ekran görüntüsü 2025-07-04 213026](https://github.com/user-attachments/assets/9176f8f7-781a-4db2-a271-37d9b41f55fa)
-![Ekran görüntüsü 2025-07-05 150903](https://github.com/user-attachments/assets/440b376f-4862-4127-9c0b-2352b0114ce2)
-![Ekran görüntüsü 2025-07-05 152055](https://github.com/user-attachments/assets/0b3317ea-aa81-487a-afa4-5190e09745bb)
-![Ekran görüntüsü 2025-07-05 152101](https://github.com/user-attachments/assets/c03eb4c0-9b71-4405-a6f4-cc49d381e9c7)
-
----
-
-### 📋 Trello Board
-
-Aşağıda proje yönetiminde kullandığımız Trello board ekran görüntüsünü görebilirsiniz:
-
-![Ekran görüntüsü 2025-07-06 212006](https://github.com/user-attachments/assets/d69861e7-76d0-4e43-afdd-868ee5aa13f8)
-
----
-
-## 📸 Daily Scrum Ekran Görüntüleri
-
-### Google Meet Daily (05 Temmuz 2025)
-
-![aa](https://github.com/user-attachments/assets/38894400-4778-465b-b951-3490e627499f)
-
----
-
-## 💬 Fikir Geliştirme Süreci
-
-İlk fikirlerin paylaşıldığı ve proje kararının alındığı WhatsApp ekran görüntüsü:
-
-![bb](https://github.com/user-attachments/assets/c760117f-0555-4828-98d9-2bb309c6a4f9)
-
----
-
-### 📌 Notlar
-
-- Projede Tailwind CSS kullanılmamış, sadece React ve modüler CSS ile sade ve profesyonel bir ön yüz tasarımı yapılmıştır.
-- Backend API ve gerçek yapay zeka entegrasyonu ilerleyen sprintlerde tamamlanacaktır.
-- Kullanıcı deneyimi ve erişilebilirlik sürekli geliştirilmektedir.
+The original team repository is [scbarut/YZTA-Bootcamp](https://github.com/scbarut/YZTA-Bootcamp).
